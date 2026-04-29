@@ -1,49 +1,47 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Mes tâches</title>
-</head>
-<body>
+<body style="font-family: Arial; background:#f5f5f5; padding:30px;">
 
-<h1>Liste des tâches</h1>
+<div style="max-width:600px; margin:auto; background:white; padding:20px; border-radius:10px;">
 
-<form method="POST" action="/tasks">
+<h2 style="text-align:center;">📝 Gestion des tâches</h2>
+
+<form method="POST" action="/tasks" style="margin-bottom:20px;">
     @csrf
-    <input type="text" name="title" placeholder="Ajouter une tâche">
-    <button type="submit">Ajouter</button>
+    <input type="text" name="title" placeholder="Ajouter une tâche" style="width:70%; padding:8px;">
+    <button style="padding:8px 15px; background:blue; color:white;">Ajouter</button>
 </form>
 
-<hr>
+<h4>Tâches non terminées</h4>
 
-<h2>Tâches non terminées</h2>
-<ul>
 @foreach($tasks->where('is_done', false) as $task)
-    <li>
-        {{ $task->title }}
+<div style="background:#eee; padding:10px; margin-bottom:10px; border-radius:5px;">
+    
+    <span>{{ $task->title }}</span>
 
+    <div style="float:right;">
         <form method="POST" action="/tasks/{{ $task->id }}" style="display:inline;">
             @csrf
             @method('PUT')
-            <button type="submit">Terminé</button>
+            <button>✔</button>
         </form>
 
         <form method="POST" action="/tasks/{{ $task->id }}" style="display:inline;">
             @csrf
             @method('DELETE')
-            <button type="submit">Supprimer</button>
+            <button>✖</button>
         </form>
-    </li>
-@endforeach
-</ul>
+    </div>
 
-<h2>Tâches terminées</h2>
-<ul>
-@foreach($tasks->where('is_done', true) as $task)
-    <li>
-        <del>{{ $task->title }}</del>
-    </li>
+</div>
 @endforeach
-</ul>
+
+<h4>Tâches terminées</h4>
+
+@foreach($tasks->where('is_done', true) as $task)
+<div style="background:#ddd; padding:10px; margin-bottom:10px; border-radius:5px;">
+    <del>{{ $task->title }}</del>
+</div>
+@endforeach
+
+</div>
 
 </body>
-</html>
