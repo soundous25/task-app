@@ -10,15 +10,17 @@ class TaskController extends Controller
     // Afficher les tâches
 public function index()
 {
-    $tasks = Task::all();
-    return view('tasks.index', compact('tasks'));
+    $pendingTasks = Task::where('is_done', false)->get();
+    $completedTasks = Task::where('is_done', true)->get();
+
+    return view('tasks.index', compact('pendingTasks', 'completedTasks'));
 }
     // Ajouter une tâche
   public function store(Request $request)
 {
     $request->validate([
-        'title' => 'required|string|max:255'
-    ]);
+    'title' => 'required|min:1|max:255'
+]);
 
     Task::create([
         'title' => $request->title,
@@ -28,19 +30,18 @@ public function index()
     return redirect('/tasks');
 }
     // Marquer terminé / pas terminé
-    public function update($id)
-    {
-        $task = Task::findOrFail($id);
-        $task->is_done = !$task->is_done;
-        $task->save();
+ public function update(Task $task)
+{
+    $task->is_done = !$task->is_done;
+    $task->save(); // PAS saveQuietly
 
-        return redirect('/tasks');
-    }
+    return redirect('/tasks');
+}
 
     // Supprimer
-    public function destroy($id)
+      public function destroy(Task $task)
     {
-        Task::destroy($id);
-         return redirect('/tasks');
+        $task->delete();
+        return redirect('/tasks');
     }
 }
