@@ -15,7 +15,7 @@ Cette application permet de gérer une liste de tâches avec les fonctionnalité
 
 ---
 
-## 🛠️ Technologies utilisées
+## Technologies utilisées
 
 - Laravel 12
 - PHP 8+
@@ -25,7 +25,7 @@ Cette application permet de gérer une liste de tâches avec les fonctionnalité
 
 ---
 
-## 📂 Structure du projet
+## Structure du projet
 
 - Model : `Task`
 - Controller : `TaskController`
@@ -35,7 +35,7 @@ Cette application permet de gérer une liste de tâches avec les fonctionnalité
 
 ---
 
-## 🗄️ Base de données
+## Base de données
 
 Table : `tasks`
 
@@ -49,8 +49,53 @@ Table : `tasks`
 
 ---
 
-## ⚙️ Installation
+## Installation
 
 1. Cloner le projet :
 ```bash
-git clone <repo_url>
+git clone https://github.com/soundous25/task-app.git
+cd task-app
+```
+
+2. Installer les dépendances :
+```bash
+composer install
+```
+
+3. Copier le fichier d'environnement :
+```bash
+cp .env.example .env
+```
+
+4. Générer la clé d'application :
+```bash
+php artisan key:generate
+```
+
+5. Créer la base de données SQLite :
+```bash
+touch database/database.sqlite
+```
+
+6. Lancer les migrations :
+```bash
+php artisan migrate
+```
+
+7. (Optionnel) Charger les données de test :
+```bash
+php artisan db:seed
+```
+
+8. Démarrer le serveur :
+```bash
+php artisan serve
+```
+
+L'application est accessible sur : **http://127.0.0.1:8000**
+
+---
+
+## Données de test
+
+Après `php artisan db:seed`, 5 tâches d'exemple sont créées (2 terminées, 3 en cours).
