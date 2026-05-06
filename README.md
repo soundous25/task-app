@@ -1,46 +1,56 @@
-# Task Manager - Laravel
+# 📝 Task Manager - Laravel
+
+Une mini application de gestion de tâches développée avec Laravel et Blade.
+
+---
 
 ## Description
-Application simple de gestion de tâches réalisée avec Laravel.
 
-## Fonctionnalités
+Cette application permet de gérer une liste de tâches avec les fonctionnalités suivantes :
+
 - Ajouter une tâche
-- Afficher les tâches
-- Marquer une tâche comme terminée
+- Afficher la liste des tâches
+- Marquer une tâche comme terminée / non terminée
 - Supprimer une tâche
 
-## Technologies utilisées
-- Laravel
-- PHP
-- SQLite
-- Blade
+---
 
-## Installation
+## 🛠️ Technologies utilisées
 
-1. Cloner le projet
-2. Installer les dépendances :
-   composer install
+- Laravel 12
+- PHP 8+
+- Blade (templating engine)
+- SQLite 
+- HTML / CSS
 
-3. Copier le fichier env :
-   cp .env.example .env
+---
 
-4. Générer la clé :
-   php artisan key:generate
+## 📂 Structure du projet
 
-5. Lancer les migrations :
-   php artisan migrate
+- Model : `Task`
+- Controller : `TaskController`
+- Migration : `create_tasks_table`
+- Views : `resources/views/tasks`
+- Routes : `routes/web.php`
 
-6. Lancer le serveur :
-   php artisan serve
+---
 
-## Base de données
+## 🗄️ Base de données
 
-Table: tasks  
-- id  
-- title  
-- is_done  
-- created_at  
-- updated_at
+Table : `tasks`
 
-## Auteur
-Projet réalisé dans le cadre d’un challenge technique.
+| Champ      | Type      | Description              |
+|------------|----------|--------------------------|
+| id         | bigint   | Identifiant unique       |
+| title      | string   | Titre de la tâche        |
+| is_done    | boolean  | Statut de la tâche       |
+| created_at | timestamp| Date de création         |
+| updated_at | timestamp| Date de mise à jour      |
+
+---
+
+## ⚙️ Installation
+
+1. Cloner le projet :
+```bash
+git clone <repo_url>
